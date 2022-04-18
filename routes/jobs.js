@@ -14,7 +14,7 @@ const jobNewSchema = require("../schemas/jobNew.json");
 const jobUpdateSchema = require("../schemas/jobUpdate.json");
 const jobSearchSchema = require("../schemas/jobSearch.json");
 
-const router = new express.Router();
+const router = express.Router({ mergeParams: true });
 
 /** POST / { job } =>  { job }
  *
@@ -55,7 +55,7 @@ router.get("/", async function (req, res, next) {
   const q = req.query;
   //get integers from strings
   if (q.minSalary !== undefined) q.minSalary = +q.minSalary;
-  q.hasEquity = q.hasEquity === "true;";
+  q.hasEquity = q.hasEquity === "true";
 
   try {
     const validator = jsonschema.validate(q, jobSearchSchema);
@@ -70,9 +70,9 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/** GET /[id]  =>  { job}
+/** GET /[jobid]  =>  { job}
  *
- *  Job is { id, title, salary, equity, company }
+ *  Returns { id, title, salary, equity, company }
  *   where company is { handle, name, description, numEmployees, logoUrl  }
  *
  * Authorization required: none
@@ -121,7 +121,7 @@ router.patch("/:id", ensureAdmin, async function (req, res, next) {
 router.delete("/:id", ensureAdmin, async function (req, res, next) {
   try {
     await Job.remove(req.params.id);
-    return res.json({ deleted: req.params.id });
+    return res.json({ deleted: +req.params.id });
   } catch (err) {
     return next(err);
   }

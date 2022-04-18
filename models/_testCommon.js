@@ -20,8 +20,8 @@ async function commonBeforeAll() {
   const resultsJobs = await db.query(`
   INSERT INTO jobs(title, salary, equity, company_handle)
   VALUES ('Job1, 100, '0.1', 'c1'),
-  ('Job2, 200, '0.2', 'c2'),
-  ('Job3, 300, '0.3', 'c3'), RETURNING id`);
+  ('Job2, 200, '0.2', 'c1'),
+  ('Job3, 300, '0.3', 'c1'), RETURNING id`);
   testJobIds.splice(0, 0, ...resultsJobs.rows.map((r) => r.id));
 
   await db.query(

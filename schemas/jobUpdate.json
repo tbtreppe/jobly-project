@@ -5,16 +5,20 @@
   "default": {},
   "properties": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
     },
     "salary": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 0
     },
     "equity": {
-      "type": "string"
+      "type": "string",
+      "pattern": "0|(0?\\.[0-9]+)"
     }
   },
-  "required": [],
+  "required": ["title"],
 
   "additionalProperties": false
 }

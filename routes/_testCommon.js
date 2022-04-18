@@ -6,6 +6,8 @@ const Company = require("../models/company");
 const { createToken } = require("../helpers/tokens");
 const Job = require("../models/job.js");
 
+const testJobIds = [];
+
 async function commonBeforeAll() {
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
@@ -48,7 +50,7 @@ async function commonBeforeAll() {
       title: "Job2",
       salary: 200,
       equity: "0.2",
-      companyHandle: "c2",
+      companyHandle: "c1",
     })
   ).id;
 
@@ -57,7 +59,7 @@ async function commonBeforeAll() {
       title: "Job3",
       salary: 300,
       equity: "0.3",
-      companyHandle: "c3",
+      companyHandle: "c1",
     })
   ).id;
 

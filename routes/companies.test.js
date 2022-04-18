@@ -266,9 +266,7 @@ describe("DELETE /companies/:handle", function () {
   });
 
   test("unauth for anon", async function () {
-    const resp = await request(app)
-      .delete(`/companies/c1`)
-      .set("authorization", `Bearer ${adminToken}`);
+    const resp = await request(app).delete(`/companies/c1`);
     expect(resp.statusCode).toEqual(401);
   });
 
