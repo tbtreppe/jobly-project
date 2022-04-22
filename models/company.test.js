@@ -169,7 +169,7 @@ describe("get", function () {
       jobs: [
         { id: testJobIds[0], title: "Job1", salary: 100, equity: "0.1" },
         { id: testJobIds[1], title: "Job2", salary: 200, equity: "0.2" },
-        { id: testJobIds[2], title: "Job3", salary: 300, equity: "0" },
+        { id: testJobIds[2], title: "Job3", salary: 300, equity: "0.3" },
       ],
     });
   });

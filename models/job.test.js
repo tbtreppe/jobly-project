@@ -1,6 +1,7 @@
 "use strict";
 
 const db = require("../db.js");
+const Job = require("./job.js");
 const { BadRequestError, NotFoundError } = require("../expressError");
 const Company = require("./company.js");
 const {
@@ -61,7 +62,7 @@ describe("findAll", function () {
         id: testJobIds[2],
         title: "Job3",
         salary: 300,
-        equity: "0",
+        equity: "0.3",
         companyHandle: "c1",
         companyName: "C1",
       },
@@ -74,7 +75,7 @@ describe("findAll", function () {
         id: testJobIds[2],
         title: "Job3",
         salary: 300,
-        equity: "0",
+        equity: "0.3",
         companyHandle: "c1",
         companyName: "C1",
       },
@@ -99,6 +100,14 @@ describe("findAll", function () {
         companyHandle: "c1",
         companyName: "C1",
       },
+      {
+        id: testJobIds[2],
+        title: "Job3",
+        salary: 300,
+        equity: "0.3",
+        companyHandle: "c1",
+        companyName: "C1",
+      },
     ]);
   });
   test("works: by min salary and equity", async function () {
@@ -109,6 +118,14 @@ describe("findAll", function () {
         title: "Job2",
         salary: 200,
         equity: "0.2",
+        companyHandle: "c1",
+        companyName: "C1",
+      },
+      {
+        id: testJobIds[2],
+        title: "Job3",
+        salary: 300,
+        equity: "0.3",
         companyHandle: "c1",
         companyName: "C1",
       },
@@ -169,8 +186,8 @@ describe("update", function () {
   };
 
   test("works", async function () {
-    let job = await Company.update(testJobIds[0], updateData);
-    expect(company).toEqual({
+    let job = await Job.update(testJobIds[0], updateData);
+    expect(job).toEqual({
       id: testJobIds[0],
       companyHandle: "c1",
       ...updateData,

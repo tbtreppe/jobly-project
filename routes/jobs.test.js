@@ -142,7 +142,7 @@ describe("GET /jobs", function () {
   });
 
   test("bad filter request", async function () {
-    const resp = await request(app).get("/jobs").query({ fake: "faker" });
+    const resp = await request(app).get("/jobs").query({ minSalary: "faker" });
     expect(resp.statusCode).toEqual(400);
   });
 });

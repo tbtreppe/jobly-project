@@ -126,7 +126,7 @@ router.delete(
 );
 
 router.post(
-  "/:username/jobs/id",
+  "/:username/jobs/:id",
   ensureCorrectUserOrAdmin,
   async function (req, res, next) {
     try {

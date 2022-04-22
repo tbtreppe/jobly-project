@@ -38,7 +38,7 @@ class Job {
    * */
 
   static async findAll({ minSalary, hasEquity, title } = {}) {
-    let query = `SELECT j.id, j.title, j.salary, j.equity, j.company_handle AS "companyHandle"m c.name AS "companyName"
+    let query = `SELECT j.id, j.title, j.salary, j.equity, j.company_handle AS "companyHandle", c.name AS "companyName"
            FROM jobs j LEFT JOIN companies AS c ON c.handle = j.company_handle`;
 
     let whereExpressions = [];
@@ -53,7 +53,7 @@ class Job {
     }
 
     if (hasEquity === true) {
-      whereExpressions.push(`equity >0`);
+      whereExpressions.push(`equity > 0`);
     }
 
     if (title !== undefined) {
@@ -62,14 +62,14 @@ class Job {
     }
 
     if (whereExpressions.length > 0) {
-      query += "WHERE" + whereExpressions.join(" AND ");
+      query += " WHERE " + whereExpressions.join(" AND ");
     }
 
     // Finalize query and return results
 
     query += " ORDER BY title";
-    const jobRes = await db.query(query, queryValues);
-    return jobRes.rows;
+    const jobsRes = await db.query(query, queryValues);
+    return jobsRes.rows;
   }
 
   /** Given a job id, return data about job.

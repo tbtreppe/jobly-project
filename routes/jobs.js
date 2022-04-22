@@ -53,6 +53,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
   const q = req.query;
+
   //get integers from strings
   if (q.minSalary !== undefined) q.minSalary = +q.minSalary;
   q.hasEquity = q.hasEquity === "true";
